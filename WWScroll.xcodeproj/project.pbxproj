@@ -3,25 +3,33 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		44CB0DF322A198EF0048627B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CB0DF222A198EF0048627B /* AppDelegate.swift */; };
 		44CB0DF522A198EF0048627B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CB0DF422A198EF0048627B /* ViewController.swift */; };
-		44CB0DF822A198EF0048627B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44CB0DF622A198EF0048627B /* Main.storyboard */; };
 		44CB0DFA22A198F00048627B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44CB0DF922A198F00048627B /* Assets.xcassets */; };
 		44CB0DFD22A198F00048627B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44CB0DFB22A198F00048627B /* LaunchScreen.storyboard */; };
+		44CB0E0822A19BD70048627B /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CB0E0722A19BD70048627B /* Item.swift */; };
+		44CB0E0A22A19BE90048627B /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CB0E0922A19BE90048627B /* ItemCell.swift */; };
+		44CB0E0C22A19C000048627B /* ItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CB0E0B22A19C000048627B /* ItemController.swift */; };
+		7CF9C94B5FB35B84E9E5E4AA /* Pods_WWScroll.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB6E7BA397E1A3A44D967D74 /* Pods_WWScroll.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		44CB0DEF22A198EF0048627B /* WWScroll.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WWScroll.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44CB0DF222A198EF0048627B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		44CB0DF422A198EF0048627B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		44CB0DF722A198EF0048627B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		44CB0DF922A198F00048627B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		44CB0DFC22A198F00048627B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		44CB0DFE22A198F00048627B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		44CB0E0722A19BD70048627B /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		44CB0E0922A19BE90048627B /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
+		44CB0E0B22A19C000048627B /* ItemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemController.swift; sourceTree = "<group>"; };
+		47DBA19F4D184BDC00304A01 /* Pods-WWScroll.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWScroll.debug.xcconfig"; path = "Target Support Files/Pods-WWScroll/Pods-WWScroll.debug.xcconfig"; sourceTree = "<group>"; };
+		AB6E7BA397E1A3A44D967D74 /* Pods_WWScroll.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WWScroll.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC838320B57D1CA90189D6BA /* Pods-WWScroll.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWScroll.release.xcconfig"; path = "Target Support Files/Pods-WWScroll/Pods-WWScroll.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CF9C94B5FB35B84E9E5E4AA /* Pods_WWScroll.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +49,8 @@
 			children = (
 				44CB0DF122A198EF0048627B /* WWScroll */,
 				44CB0DF022A198EF0048627B /* Products */,
+				B97B8C3609ECF399799809BF /* Pods */,
+				83A8FB1E76EDED1B104D9B16 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +65,57 @@
 		44CB0DF122A198EF0048627B /* WWScroll */ = {
 			isa = PBXGroup;
 			children = (
+				44CB0E0622A199380048627B /* Model */,
+				44CB0E0522A199330048627B /* View */,
+				44CB0E0422A1992E0048627B /* Controller */,
 				44CB0DF222A198EF0048627B /* AppDelegate.swift */,
-				44CB0DF422A198EF0048627B /* ViewController.swift */,
-				44CB0DF622A198EF0048627B /* Main.storyboard */,
 				44CB0DF922A198F00048627B /* Assets.xcassets */,
+				44CB0DF422A198EF0048627B /* ViewController.swift */,
 				44CB0DFB22A198F00048627B /* LaunchScreen.storyboard */,
 				44CB0DFE22A198F00048627B /* Info.plist */,
 			);
 			path = WWScroll;
+			sourceTree = "<group>";
+		};
+		44CB0E0422A1992E0048627B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				44CB0E0B22A19C000048627B /* ItemController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		44CB0E0522A199330048627B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				44CB0E0922A19BE90048627B /* ItemCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		44CB0E0622A199380048627B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				44CB0E0722A19BD70048627B /* Item.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		83A8FB1E76EDED1B104D9B16 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AB6E7BA397E1A3A44D967D74 /* Pods_WWScroll.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B97B8C3609ECF399799809BF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				47DBA19F4D184BDC00304A01 /* Pods-WWScroll.debug.xcconfig */,
+				BC838320B57D1CA90189D6BA /* Pods-WWScroll.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +125,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 44CB0E0122A198F00048627B /* Build configuration list for PBXNativeTarget "WWScroll" */;
 			buildPhases = (
+				84A07E19A65412A2231CA45E /* [CP] Check Pods Manifest.lock */,
 				44CB0DEB22A198EF0048627B /* Sources */,
 				44CB0DEC22A198EF0048627B /* Frameworks */,
 				44CB0DED22A198EF0048627B /* Resources */,
+				EEF6C1AD0B2C9FF86E8532C3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -124,18 +180,62 @@
 			files = (
 				44CB0DFD22A198F00048627B /* LaunchScreen.storyboard in Resources */,
 				44CB0DFA22A198F00048627B /* Assets.xcassets in Resources */,
-				44CB0DF822A198EF0048627B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		84A07E19A65412A2231CA45E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WWScroll-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EEF6C1AD0B2C9FF86E8532C3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WWScroll/Pods-WWScroll-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WWScroll/Pods-WWScroll-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WWScroll/Pods-WWScroll-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		44CB0DEB22A198EF0048627B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44CB0E0C22A19C000048627B /* ItemController.swift in Sources */,
+				44CB0E0A22A19BE90048627B /* ItemCell.swift in Sources */,
 				44CB0DF522A198EF0048627B /* ViewController.swift in Sources */,
+				44CB0E0822A19BD70048627B /* Item.swift in Sources */,
 				44CB0DF322A198EF0048627B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -143,14 +243,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		44CB0DF622A198EF0048627B /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				44CB0DF722A198EF0048627B /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		44CB0DFB22A198F00048627B /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -280,10 +372,12 @@
 		};
 		44CB0E0222A198F00048627B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 47DBA19F4D184BDC00304A01 /* Pods-WWScroll.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = WWScroll/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -297,10 +391,12 @@
 		};
 		44CB0E0322A198F00048627B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BC838320B57D1CA90189D6BA /* Pods-WWScroll.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = WWScroll/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
