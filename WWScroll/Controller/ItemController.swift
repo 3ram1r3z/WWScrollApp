@@ -11,7 +11,6 @@ import SDWebImage
 
 class ItemController: UITableViewController {
     
-    let newTableView = UITableView()
     var items:[Item] = []
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -33,24 +32,28 @@ class ItemController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> ItemCell {
-        let cell = newTableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! ItemCell
-        switch indexPath.section {
-        case 1:
-            cell.foodTitle.text = "\(items[indexPath.row].title)"
-            cell.foodImageView.image = UIImage()
-        case 2:
-            cell.foodTitle.text = ""
-            let imageURL =  items[indexPath.row].imageName
-            let domain:URL = URL(string: "https://www.weightwatchers.com/\(imageURL)")!
-            cell.foodImageView.image = UIImage(named: "bear_first")
-            cell.foodImageView.sd_setImage(with: domain)
-        default:
-            cell.foodTitle.text = "\(items[indexPath.row].title)"
-            let imageURL =  items[indexPath.row].imageName
-            let domain:URL = URL(string: "https://www.weightwatchers.com/\(imageURL)")!
-            cell.foodImageView.sd_setImage(with: domain, placeholderImage: UIImage(named: "bear_first"), options: [], completed: nil)
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as? ItemCell {
+            switch indexPath.section {
+            case 1:
+                cell.foodTitle.text = "\(items[indexPath.row].title)"
+                cell.foodImageView.image = UIImage()
+            case 2:
+                cell.foodTitle.text = ""
+                let imageURL =  items[indexPath.row].imageName
+                let domain = URL(string: "https://www.weightwatchers.com/\(imageURL)")
+                cell.foodImageView.image = UIImage(named: "bear_first")
+                cell.foodImageView.sd_setImage(with: domain)
+            default:
+                cell.foodTitle.text = "\(items[indexPath.row].title)"
+                let imageURL =  items[indexPath.row].imageName
+                let domain = URL(string: "https://www.weightwatchers.com/\(imageURL)")
+                cell.foodImageView.sd_setImage(with: domain, placeholderImage: UIImage(named: "bear_first"), options: [], completed: nil)
+            }
+            return cell
+        } else  {
+            return ItemCell()
         }
-        return cell
+        
     }
     
     
@@ -68,14 +71,21 @@ class ItemController: UITableViewController {
                     }
                 }
                 do {
-                    let dataDictionary = try JSONSerialization.jsonObject(with: data! as Data, options: .allowFragments) as! [NSDictionary]
-                    for data in dataDictionary {
-                        let imageName = data["image"].unsafelyUnwrapped
-                        let title = data["title"].unsafelyUnwrapped
-                        self.items.append(Item(imageName: imageName as! String, title: title as! String))
-                    }
-                    DispatchQueue.main.async {
-                        self.newTableView.reloadData()
+                    //look good??
+                    if let dataDictionary = try JSONSerialization.jsonObject(with: data ?? Data(), options: .allowFragments) as? [NSDictionary] {
+                        for data in dataDictionary {
+                            //                        let imageName = data["image"].unsafelyUnwrapped
+                            //                        let title = data["title"].unsafelyUnwrapped
+                            if let imageName = data["image"] as? String? ?? "", let title = data["title"] as? String? ?? "" { //look good?
+                                self.items.append(Item(imageName: imageName, title: title))
+                            }
+                            
+                        }
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                        }
+                    } else {
+                        return
                     }
                 } catch {
                     return
@@ -85,15 +95,11 @@ class ItemController: UITableViewController {
         }
     }
     
-    override func loadView() {
-        view = newTableView
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        newTableView.register(ItemCell.self, forCellReuseIdentifier: "cellId")
-        newTableView.dataSource = self
-        newTableView.delegate = self
+        tableView.register(ItemCell.self, forCellReuseIdentifier: "cellId")
+        tableView.dataSource = self
+        tableView.delegate = self
         loadData()
     }
 }
