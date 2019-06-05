@@ -9,7 +9,7 @@
 import UIKit
 import SDWebImage
 
-class ItemController: UITableViewController, UICollectionViewDelegateFlowLayout {
+class ItemController: UITableViewController {
     
     let newTableView = UITableView()
     var items:[Item] = []
@@ -37,7 +37,7 @@ class ItemController: UITableViewController, UICollectionViewDelegateFlowLayout 
         switch indexPath.section {
         case 1:
             cell.foodTitle.text = "\(items[indexPath.row].title)"
-            cell.foodImageView.sd_cancelCurrentImageLoad()
+            cell.foodImageView.image = UIImage()
         case 2:
             cell.foodTitle.text = ""
             let imageURL =  items[indexPath.row].imageName
@@ -74,6 +74,9 @@ class ItemController: UITableViewController, UICollectionViewDelegateFlowLayout 
                         let title = data["title"].unsafelyUnwrapped
                         self.items.append(Item(imageName: imageName as! String, title: title as! String))
                     }
+                    DispatchQueue.main.async {
+                        self.newTableView.reloadData()
+                    }
                 } catch {
                     return
                 }
@@ -82,12 +85,15 @@ class ItemController: UITableViewController, UICollectionViewDelegateFlowLayout 
         }
     }
     
+    override func loadView() {
+        view = newTableView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         newTableView.register(ItemCell.self, forCellReuseIdentifier: "cellId")
-        loadData()
-        self.newTableView.reloadData()
-        
         newTableView.dataSource = self
+        newTableView.delegate = self
+        loadData()
     }
 }

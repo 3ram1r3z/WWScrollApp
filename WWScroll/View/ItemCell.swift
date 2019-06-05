@@ -22,19 +22,25 @@ class ItemCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         contentView.backgroundColor = .white
-        contentView.addSubview(foodImageView)
+        
+        contentView.addSubview(imageContainer)
+        imageContainer.addSubview(foodImageView)
         contentView.addSubview(containerView)
         containerView.addSubview(foodTitle)
         
-        foodImageView.widthAnchor.constraint(equalToConstant: 80).isActive = true
-        foodImageView.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
-        foodImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10).isActive = true
-        foodImageView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 10).isActive = true
+        imageContainer.widthAnchor.constraint(equalToConstant: 80).isActive = true
+        imageContainer.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
+        imageContainer.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10).isActive = true
+        imageContainer.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 10).isActive = true
+        
+        foodImageView.topAnchor.constraint(equalTo: self.imageContainer.topAnchor).isActive = true
+        foodImageView.leadingAnchor.constraint(equalTo: self.imageContainer.leadingAnchor).isActive = true
+        foodImageView.trailingAnchor.constraint(equalTo: self.imageContainer.trailingAnchor).isActive = true
+        foodImageView.bottomAnchor.constraint(equalTo: self.imageContainer.bottomAnchor).isActive = true
         
         containerView.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor).isActive = true
-        containerView.leadingAnchor.constraint(equalTo: self.foodImageView.trailingAnchor, constant: 10).isActive = true
+        containerView.leadingAnchor.constraint(equalTo: self.imageContainer.trailingAnchor, constant: 10).isActive = true
         containerView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -10).isActive = true
-        containerView.heightAnchor.constraint(equalToConstant: 1000).isActive = true
         
         foodTitle.topAnchor.constraint(equalTo: self.containerView.topAnchor).isActive = true
         foodTitle.leadingAnchor.constraint(equalTo: self.containerView.leadingAnchor).isActive = true
