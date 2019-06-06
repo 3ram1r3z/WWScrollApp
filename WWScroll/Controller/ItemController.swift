@@ -11,7 +11,7 @@ import SDWebImage
 
 class ItemController: UITableViewController {
     
-    var items:[Item] = []
+    var itemViewModels = [ItemCellViewModel]()
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 3
@@ -22,7 +22,7 @@ class ItemController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
+        return itemViewModels.count
     }
     
     let headerTitles = ["Section 1", "Section 2", "Section 3"]
@@ -35,17 +35,17 @@ class ItemController: UITableViewController {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as? ItemCell {
             switch indexPath.section {
             case 1:
-                cell.foodTitle.text = "\(items[indexPath.row].title)"
-                cell.foodImageView.image = UIImage()
+                cell.foodTitle.text = "\(itemViewModels[indexPath.row].title)"
+                cell.foodImageView.image = nil
             case 2:
-                cell.foodTitle.text = ""
-                let imageURL =  items[indexPath.row].imageName
+                cell.foodTitle.text = nil
+                let imageURL =  itemViewModels[indexPath.row].imageName
                 let domain = URL(string: "https://www.weightwatchers.com/\(imageURL)")
-                cell.foodImageView.image = UIImage(named: "bear_first")
+//                cell.foodImageView.image = UIImage(named: "bear_first")
                 cell.foodImageView.sd_setImage(with: domain)
             default:
-                cell.foodTitle.text = "\(items[indexPath.row].title)"
-                let imageURL =  items[indexPath.row].imageName
+                cell.foodTitle.text = "\(itemViewModels[indexPath.row].title)"
+                let imageURL =  itemViewModels[indexPath.row].imageName
                 let domain = URL(string: "https://www.weightwatchers.com/\(imageURL)")
                 cell.foodImageView.sd_setImage(with: domain, placeholderImage: UIImage(named: "bear_first"), options: [], completed: nil)
             }
@@ -72,12 +72,13 @@ class ItemController: UITableViewController {
                 }
                 do {
                     //look good??
-                    if let dataDictionary = try JSONSerialization.jsonObject(with: data ?? Data(), options: .allowFragments) as? [NSDictionary] {
+                    if let theData = data, let dataDictionary = try JSONSerialization.jsonObject(with: theData, options: .allowFragments) as? [NSDictionary] {
                         for data in dataDictionary {
                             //                        let imageName = data["image"].unsafelyUnwrapped
                             //                        let title = data["title"].unsafelyUnwrapped
-                            if let imageName = data["image"] as? String? ?? "", let title = data["title"] as? String? ?? "" { //look good?
-                                self.items.append(Item(imageName: imageName, title: title))
+                            if let imageName = data["image"] as? String, let title = data["title"] as? String { //look good?
+                                let item = Item(imageName: imageName, title: title)
+                                self.itemViewModels.append(ItemCellViewModel(item: item))
                             }
                             
                         }

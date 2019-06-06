@@ -10,11 +10,19 @@ import UIKit
 
 class ItemCell: UITableViewCell {
     
-    var item: Item? {
+//    var item: Item? {
+//        didSet {
+//            guard let unwrappedItem = item else { return }
+//            foodImageView.image = UIImage(named: "\(unwrappedItem.imageName)")
+//            foodTitle.text = unwrappedItem.title
+//        }
+//    }
+    
+    var itemViewModel: ItemCellViewModel? {
         didSet {
-            guard let unwrappedItem = item else { return }
+            guard let unwrappedItem = itemViewModel else { return }
             foodImageView.image = UIImage(named: "\(unwrappedItem.imageName)")
-            foodTitle.text = unwrappedItem.title
+            foodTitle.text = itemViewModel?.title
         }
     }
     
