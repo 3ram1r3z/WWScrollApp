@@ -16,7 +16,8 @@ class ItemsViewModel: NSObject {
 
     var itemViewModels = [ItemCellViewModel]()
     
-    func loadData(){//tableView: UITableView) {
+    func loadData(){
+        
         let sharedSession = URLSession.shared
         if let url = URL(string: "https://www.weightwatchers.com/assets/cmx/us/messages/collections.json") {
             let request = URLRequest(url: url)

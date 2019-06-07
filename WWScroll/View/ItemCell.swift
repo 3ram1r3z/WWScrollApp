@@ -29,12 +29,12 @@ class ItemCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        contentView.backgroundColor = .white
+//        contentView.backgroundColor = .white
         
         contentView.addSubview(imageContainer)
         imageContainer.addSubview(foodImageView)
-        contentView.addSubview(containerView)
-        containerView.addSubview(foodTitle)
+        contentView.addSubview(titleContainer)
+        titleContainer.addSubview(foodTitle)
         
         imageContainer.widthAnchor.constraint(equalToConstant: 80).isActive = true
         imageContainer.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
@@ -46,14 +46,18 @@ class ItemCell: UITableViewCell {
         foodImageView.trailingAnchor.constraint(equalTo: self.imageContainer.trailingAnchor).isActive = true
         foodImageView.bottomAnchor.constraint(equalTo: self.imageContainer.bottomAnchor).isActive = true
         
-        containerView.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor).isActive = true
-        containerView.leadingAnchor.constraint(equalTo: self.imageContainer.trailingAnchor, constant: 10).isActive = true
-        containerView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -10).isActive = true
+//        titleContainer.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor).isActive = true
+        titleContainer.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
+        titleContainer.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10).isActive = true
+        titleContainer.leadingAnchor.constraint(equalTo: self.imageContainer.trailingAnchor, constant: 10).isActive = true
+        titleContainer.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -10).isActive = true
         
-        foodTitle.topAnchor.constraint(equalTo: self.containerView.topAnchor).isActive = true
-        foodTitle.leadingAnchor.constraint(equalTo: self.containerView.leadingAnchor).isActive = true
-        foodTitle.trailingAnchor.constraint(equalTo: self.containerView.trailingAnchor).isActive = true
-        foodTitle.bottomAnchor.constraint(equalTo: self.containerView.bottomAnchor).isActive = true
+        foodTitle.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor).isActive = true
+//        foodTitle.topAnchor.constraint(equalTo: self.titleContainer.topAnchor).isActive = true
+        foodTitle.leadingAnchor.constraint(equalTo: self.titleContainer.leadingAnchor).isActive = true
+        foodTitle.trailingAnchor.constraint(equalTo: self.titleContainer.trailingAnchor).isActive = true
+//        foodTitle.bottomAnchor.constraint(equalTo: self.titleContainer.bottomAnchor).isActive = true
+        
     }
     
     let foodImageView: UIImageView = {
@@ -61,6 +65,7 @@ class ItemCell: UITableViewCell {
         image.translatesAutoresizingMaskIntoConstraints = false
         image.contentMode = .scaleAspectFit
         image.clipsToBounds = true
+//        image.backgroundColor = .purple
         return image
     }()
 
@@ -68,13 +73,15 @@ class ItemCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.boldSystemFont(ofSize: 15)
+//        label.backgroundColor = .purple
         return label
     }()
 
-    let containerView: UIView = {
+    let titleContainer: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.clipsToBounds = true
+//        view.backgroundColor = .purple
         return view
     }()
     
@@ -82,6 +89,7 @@ class ItemCell: UITableViewCell {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.clipsToBounds = true
+//        view.backgroundColor = .purple
         return view
     }()
     

@@ -17,6 +17,7 @@
 		44CB0E1422A885AC0048627B /* ItemCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CB0E1322A885AC0048627B /* ItemCellViewModel.swift */; };
 		44CB100C22A973E40048627B /* WWScrollTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CB100B22A973E40048627B /* WWScrollTests.swift */; };
 		44CB101422A997DF0048627B /* ItemsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CB101322A997DF0048627B /* ItemsViewModel.swift */; };
+		44CB101622AAE65F0048627B /* MockURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CB101522AAE65F0048627B /* MockURL.swift */; };
 		7CF9C94B5FB35B84E9E5E4AA /* Pods_WWScroll.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB6E7BA397E1A3A44D967D74 /* Pods_WWScroll.framework */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +46,7 @@
 		44CB100B22A973E40048627B /* WWScrollTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WWScrollTests.swift; sourceTree = "<group>"; };
 		44CB100D22A973E40048627B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		44CB101322A997DF0048627B /* ItemsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsViewModel.swift; sourceTree = "<group>"; };
+		44CB101522AAE65F0048627B /* MockURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURL.swift; sourceTree = "<group>"; };
 		47DBA19F4D184BDC00304A01 /* Pods-WWScroll.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWScroll.debug.xcconfig"; path = "Target Support Files/Pods-WWScroll/Pods-WWScroll.debug.xcconfig"; sourceTree = "<group>"; };
 		AB6E7BA397E1A3A44D967D74 /* Pods_WWScroll.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WWScroll.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC838320B57D1CA90189D6BA /* Pods-WWScroll.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWScroll.release.xcconfig"; path = "Target Support Files/Pods-WWScroll/Pods-WWScroll.release.xcconfig"; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				44CB100B22A973E40048627B /* WWScrollTests.swift */,
+				44CB101522AAE65F0048627B /* MockURL.swift */,
 				44CB100D22A973E40048627B /* Info.plist */,
 			);
 			path = WWScrollTests;
@@ -323,6 +326,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				44CB100C22A973E40048627B /* WWScrollTests.swift in Sources */,
+				44CB101622AAE65F0048627B /* MockURL.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
