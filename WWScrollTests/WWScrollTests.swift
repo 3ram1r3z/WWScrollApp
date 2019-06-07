@@ -57,11 +57,15 @@ class WWScrollTests: XCTestCase {
             self.scrollApp.append(ItemCellViewModel(item: itemOne))
             self.scrollApp.append(ItemCellViewModel(item: itemTwo))
             
-            sut?.itemViewModels = scrollApp
+            sut?.item.itemViewModels = scrollApp
+            sut?.doneLoading()
+            sut?.state = .populated
+            sut?.tableView.reloadData()
+            
             
             XCTAssertEqual(tableView.numberOfSections, 3)
-            XCTAssertEqual(tableView.numberOfRows(inSection: 0), scrollApp.count)
-            XCTAssertTrue(sut?.itemViewModels[0].imageName != nil)
+            XCTAssertEqual(sut?.tableView.numberOfRows(inSection: 0), scrollApp.count)
+            XCTAssertTrue(sut?.item.itemViewModels[0].imageName != nil)
             XCTAssertTrue(sut?.tableView.cellForRow(at: IndexPath(row: 0, section: 0))?.textLabel != nil)
             XCTAssertTrue(sut?.tableView.cellForRow(at: IndexPath(row: 0, section: 0))?.imageView != nil)
         }
@@ -74,11 +78,14 @@ class WWScrollTests: XCTestCase {
             self.scrollApp.append(ItemCellViewModel(item: itemOne))
             self.scrollApp.append(ItemCellViewModel(item: itemTwo))
             
-            sut?.itemViewModels = scrollApp
+            sut?.item.itemViewModels = scrollApp
+            sut?.doneLoading()
+            sut?.state = .populated
+            sut?.tableView.reloadData()
             
             XCTAssertEqual(tableView.numberOfSections, 3)
             XCTAssertEqual(tableView.numberOfRows(inSection: 1), scrollApp.count)
-            XCTAssertTrue(sut?.itemViewModels[0].imageName != nil)
+            XCTAssertTrue(sut?.item.itemViewModels[0].imageName != nil)
             XCTAssertTrue(sut?.tableView.cellForRow(at: IndexPath(row: 1, section: 1))?.textLabel != nil)
             XCTAssertTrue(sut?.tableView.cellForRow(at: IndexPath(row: 1, section: 1))?.imageView?.image == nil)
         }
@@ -91,14 +98,30 @@ class WWScrollTests: XCTestCase {
             self.scrollApp.append(ItemCellViewModel(item: itemOne))
             self.scrollApp.append(ItemCellViewModel(item: itemTwo))
             
-            sut?.itemViewModels = scrollApp
+            sut?.item.itemViewModels = scrollApp
+            sut?.doneLoading()
+            sut?.state = .populated
+            sut?.tableView.reloadData()
             
             XCTAssertEqual(tableView.numberOfSections, 3)
             XCTAssertEqual(tableView.numberOfRows(inSection: 2), scrollApp.count)
-            XCTAssertTrue(sut?.itemViewModels[0].imageName != nil)
+            XCTAssertTrue(sut?.item.itemViewModels[0].imageName != nil)
             XCTAssertTrue(sut?.tableView.cellForRow(at: IndexPath(row: 0, section: 2))?.textLabel?.text == nil)
             XCTAssertTrue(sut?.tableView.cellForRow(at: IndexPath(row: 0, section: 2))?.imageView != nil)
         }
+    }
+    
+    func testMockURL() {
+        let session = mockURLSession()
+        let test = ItemsViewModel()
+        test.loadData(session: session)
+        
+        print(test.itemViewModels)
+//        test.loadData(session: session)
+//        let data = Data(bytes: [0,1,0,1])
+//        session.data = data
+        
+        
     }
 
 }

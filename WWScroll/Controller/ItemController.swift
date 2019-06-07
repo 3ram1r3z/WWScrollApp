@@ -26,7 +26,6 @@ class ItemController: UITableViewController, DataDelegate {
     let headerTitles = ["Section 1", "Section 2", "Section 3"]
     
     func doneLoading() {
-        
         DispatchQueue.main.async {
             self.state = .populated
             self.tableView.reloadData()
