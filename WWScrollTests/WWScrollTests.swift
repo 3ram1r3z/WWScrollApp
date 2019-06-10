@@ -12,7 +12,7 @@ import XCTest
 class WWScrollTests: XCTestCase {
     var sut: ItemController?
     
-    let itemOne = Item(imageName: "burger", title: "Burger")
+    let itemOne = Item(imageName: "leaf_third", title: "Burger")
     let itemTwo = Item(imageName: "salad", title: "salad")
     
     var scrollApp = [ItemCellViewModel]()
@@ -51,8 +51,7 @@ class WWScrollTests: XCTestCase {
         XCTAssertEqual(item.title, itemViewModel.title)
     }
     
-//    testSectionOneHasBothTextAndImage
-    func testSectionOneFunctionalityBothTextAndImageShouldExist() {
+    func testSectionOneHasBothTextAndImage() {
         //image and text should be present
         guard let tableView = sut?.tableView else { return }
         self.scrollApp.append(ItemCellViewModel(item: itemOne))
@@ -63,42 +62,38 @@ class WWScrollTests: XCTestCase {
         sut?.state = .populated
         sut?.tableView.reloadData()
         
-        
         guard let cell = sut?.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ItemCell else { return }
-        
-        
         
         XCTAssertEqual(tableView.numberOfSections, 3)
         XCTAssertEqual(sut?.tableView.numberOfRows(inSection: 0), scrollApp.count)
-        XCTAssertTrue(sut?.item.itemViewModels[0].imageName != nil)
         XCTAssertTrue(cell.foodTitle.text != nil)
-        XCTAssertTrue(cell.foodImageView.image != nil)
+        XCTAssertTrue(cell.foodImageView.sd_imageURL != nil)
         
     }
     
-//    func testSectionTwoFunctionalityNoImageAndTextShouldExist() {
-//        //image should not be present
-//        //only text should show
-//        if let tableView = sut?.tableView {
-//            self.scrollApp.append(ItemCellViewModel(item: itemOne))
-//            self.scrollApp.append(ItemCellViewModel(item: itemTwo))
-//
-//            sut?.item.itemViewModels = scrollApp
-//            sut?.doneLoading()
-//            sut?.state = .populated
-//            sut?.tableView.reloadData()
-//
-////            guard let item =
-//
-//            XCTAssertEqual(tableView.numberOfSections, 3)
-//            XCTAssertEqual(tableView.numberOfRows(inSection: 1), scrollApp.count)
-//            XCTAssertTrue(sut?.item.itemViewModels[0].imageName != nil)
-//            XCTAssertTrue(sut?.tableView.cellForRow(at: IndexPath(row: 1, section: 1))?.foodTitle?.text != nil)
-//            XCTAssertTrue(sut?.tableView.cellForRow(at: IndexPath(row: 1, section: 1))?.imageView?.image == nil)
-//        }
-//    }
-//
-    func testSectionThreeFunctionalityNoTextAndImageShouldExist() {
+    func testSectionTwoNoImageButTextShouldExist() {
+        //image should not be present
+        //only text should show
+        if let tableView = sut?.tableView {
+            self.scrollApp.append(ItemCellViewModel(item: itemOne))
+            self.scrollApp.append(ItemCellViewModel(item: itemTwo))
+
+            sut?.item.itemViewModels = scrollApp
+            sut?.doneLoading()
+            sut?.state = .populated
+            sut?.tableView.reloadData()
+
+            guard let cell = sut?.tableView.cellForRow(at: IndexPath(row: 1, section: 1)) as? ItemCell else { return }
+
+
+            XCTAssertEqual(tableView.numberOfSections, 3)
+            XCTAssertEqual(tableView.numberOfRows(inSection: 1), scrollApp.count)
+            XCTAssertTrue(cell.foodTitle.text != nil)
+            XCTAssertTrue(cell.foodImageView.sd_imageURL == nil)
+        }
+    }
+
+    func testSectionThreeNoTextButImageShouldExist() {
         //text should not be present
         //only image should show
         if let tableView = sut?.tableView {
@@ -110,28 +105,26 @@ class WWScrollTests: XCTestCase {
             sut?.state = .populated
             sut?.tableView.reloadData()
             
+            guard let cell = sut?.tableView.cellForRow(at: IndexPath(row: 0, section: 3)) as? ItemCell else { return }
+            
             XCTAssertEqual(tableView.numberOfSections, 3)
             XCTAssertEqual(tableView.numberOfRows(inSection: 2), scrollApp.count)
-            XCTAssertTrue(sut?.item.itemViewModels[0].imageName != nil)
-            XCTAssertTrue(sut?.tableView.cellForRow(at: IndexPath(row: 0, section: 2))?.textLabel?.text == nil)
-            XCTAssertTrue(sut?.tableView.cellForRow(at: IndexPath(row: 0, section: 2))?.imageView != nil)
+            XCTAssertTrue(cell.foodTitle.text == nil)
+            XCTAssertTrue(cell.foodImageView.sd_imageURL != nil)
         }
     }
     
-    func testMockURLFunctionality() {
-        let session = MockURLSession()
-        let test = ItemsViewModel()
-        test.loadData(session: session)
-        
-        print(test.itemViewModels)
+//    func testMockURLFunctionality() {
+//        let session = MockURLSession()
+//        let test = ItemsViewModel()
+//        test.loadData(session: session)
+//
+//        print(test.itemViewModels)
 //        test.loadData(session: session)
 //        let data = Data(bytes: [0,1,0,1])
 //        session.data = data
         
         //assert that the data is not empty
-        
-        
-        
-    }
+//    }
 
 }

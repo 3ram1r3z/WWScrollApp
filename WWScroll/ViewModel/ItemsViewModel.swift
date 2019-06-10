@@ -16,13 +16,14 @@ class ItemsViewModel: NSObject {
 
     var itemViewModels = [ItemCellViewModel]()
     
-    func loadData(session: URLSession=URLSession.shared){
+    func loadData(session: URLSession=URLSession.shared) {
         
         let sharedSession = session
         if let url = URL(string: "https://www.weightwatchers.com/assets/cmx/us/messages/collections.json") {
             let request = URLRequest(url: url)
             let dataTask = sharedSession.dataTask(with: request, completionHandler: { (data, response, error) in
                 if error != nil {
+                    self.delegate?.noDataDisplay()  
                     return
                 }
                 if let httpStatus = response as? HTTPURLResponse {
@@ -31,10 +32,9 @@ class ItemsViewModel: NSObject {
                     }
                 }
                 do {
-                    //look good??
                     if let theData = data, let dataDictionary = try JSONSerialization.jsonObject(with: theData, options: .allowFragments) as? [NSDictionary] {
                         for data in dataDictionary {
-                            if let imageName = data["image"] as? String, let title = data["title"] as? String { //look good?
+                            if let imageName = data["image"] as? String, let title = data["title"] as? String {
                                 let item = Item(imageName: imageName, title: title)
                                 self.itemViewModels.append(ItemCellViewModel(item: item))
                             }
@@ -44,11 +44,12 @@ class ItemsViewModel: NSObject {
                         return
                     }
                 } catch {
-                    return
+                    return 
                 }
             })
             dataTask.resume()
         }
+        return
     }
 }
 
