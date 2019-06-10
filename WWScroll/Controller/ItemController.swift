@@ -33,7 +33,13 @@ class ItemController: UITableViewController, DataDelegate {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        switch state {
+        case .populated:
+            return 3
+        case .loading:
+            return 1
+        }
+        
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -58,7 +64,7 @@ class ItemController: UITableViewController, DataDelegate {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> ItemCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as? ItemCell {
-            switch indexPath.section {
+            switch indexPath.section  {
             case 1:
                 switch state {
                 case .populated:
@@ -85,7 +91,7 @@ class ItemController: UITableViewController, DataDelegate {
                     cell.titleContainer.backgroundColor = .gray
                     cell.imageContainer.backgroundColor = .gray
                 }
-            default:
+            case 0:
                 switch state {
                 case .populated:
                     cell.titleContainer.backgroundColor = nil
@@ -98,7 +104,8 @@ class ItemController: UITableViewController, DataDelegate {
                     cell.titleContainer.backgroundColor = .gray
                     cell.imageContainer.backgroundColor = .gray
                 }
-                
+            default:
+                break
             }
             return cell
         } else  {

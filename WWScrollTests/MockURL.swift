@@ -8,7 +8,7 @@
 
 import Foundation
 
-class mockURLSession: URLSession {
+class MockURLSession: URLSession {
     
 //    typealias CompletionHandler = (Data?, URLResponse?, Error?) -> Void
     
@@ -20,11 +20,11 @@ class mockURLSession: URLSession {
         let data = self.data
         let error  = self.error
         
-        return mockDataTask{ completionHandler(data, nil, error) }
+        return MockDataTask{ completionHandler(data, nil, error) }
     }
 }
 
-class mockDataTask: URLSessionDataTask {
+class MockDataTask: URLSessionDataTask {
     private let closure: () -> Void
     
     init(closure: @escaping () -> Void ) {
