@@ -30,7 +30,6 @@ class NoData: UITableViewCell {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.clipsToBounds = true
-//        view.backgroundColor = .white
         return view
     }()
     
@@ -38,7 +37,6 @@ class NoData: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.clipsToBounds = true
-//        label.backgroundColor = .yellow
         label.textColor = .black
         label.text = "Sorry, no data to display"
         return label

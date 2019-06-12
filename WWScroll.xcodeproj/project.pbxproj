@@ -20,6 +20,9 @@
 		44CB101622AAE65F0048627B /* MockURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CB101522AAE65F0048627B /* MockURL.swift */; };
 		44F48F2E22AED71F00F86912 /* NoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F48F2D22AED71F00F86912 /* NoData.swift */; };
 		44F48F3022AEE56100F86912 /* Skeleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F48F2F22AEE56100F86912 /* Skeleton.swift */; };
+		44F48F3222AF181900F86912 /* ItemController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F48F3122AF181900F86912 /* ItemController+Delegate.swift */; };
+		44F48F3422AF184D00F86912 /* ItemController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F48F3322AF184D00F86912 /* ItemController+DataSource.swift */; };
+		44F48F3622AF19BA00F86912 /* ItemController+DataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F48F3522AF19BA00F86912 /* ItemController+DataDelegate.swift */; };
 		7CF9C94B5FB35B84E9E5E4AA /* Pods_WWScroll.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB6E7BA397E1A3A44D967D74 /* Pods_WWScroll.framework */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +54,9 @@
 		44CB101522AAE65F0048627B /* MockURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURL.swift; sourceTree = "<group>"; };
 		44F48F2D22AED71F00F86912 /* NoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoData.swift; sourceTree = "<group>"; };
 		44F48F2F22AEE56100F86912 /* Skeleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Skeleton.swift; sourceTree = "<group>"; };
+		44F48F3122AF181900F86912 /* ItemController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ItemController+Delegate.swift"; sourceTree = "<group>"; };
+		44F48F3322AF184D00F86912 /* ItemController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ItemController+DataSource.swift"; sourceTree = "<group>"; };
+		44F48F3522AF19BA00F86912 /* ItemController+DataDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ItemController+DataDelegate.swift"; sourceTree = "<group>"; };
 		47DBA19F4D184BDC00304A01 /* Pods-WWScroll.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWScroll.debug.xcconfig"; path = "Target Support Files/Pods-WWScroll/Pods-WWScroll.debug.xcconfig"; sourceTree = "<group>"; };
 		AB6E7BA397E1A3A44D967D74 /* Pods_WWScroll.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WWScroll.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC838320B57D1CA90189D6BA /* Pods-WWScroll.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWScroll.release.xcconfig"; path = "Target Support Files/Pods-WWScroll/Pods-WWScroll.release.xcconfig"; sourceTree = "<group>"; };
@@ -115,6 +121,9 @@
 			isa = PBXGroup;
 			children = (
 				44CB0E0B22A19C000048627B /* ItemController.swift */,
+				44F48F3122AF181900F86912 /* ItemController+Delegate.swift */,
+				44F48F3322AF184D00F86912 /* ItemController+DataSource.swift */,
+				44F48F3522AF19BA00F86912 /* ItemController+DataDelegate.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -320,8 +329,11 @@
 				44CB0E0C22A19C000048627B /* ItemController.swift in Sources */,
 				44CB0E0A22A19BE90048627B /* ItemCell.swift in Sources */,
 				44CB0DF522A198EF0048627B /* ViewController.swift in Sources */,
+				44F48F3222AF181900F86912 /* ItemController+Delegate.swift in Sources */,
 				44F48F3022AEE56100F86912 /* Skeleton.swift in Sources */,
+				44F48F3622AF19BA00F86912 /* ItemController+DataDelegate.swift in Sources */,
 				44CB0E0822A19BD70048627B /* Item.swift in Sources */,
+				44F48F3422AF184D00F86912 /* ItemController+DataSource.swift in Sources */,
 				44CB101422A997DF0048627B /* ItemsViewModel.swift in Sources */,
 				44CB0DF322A198EF0048627B /* AppDelegate.swift in Sources */,
 				44F48F2E22AED71F00F86912 /* NoData.swift in Sources */,
