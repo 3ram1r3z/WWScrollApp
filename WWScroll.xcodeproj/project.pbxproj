@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		443340FC22B42FC20098DB4A /* NetworkServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443340FB22B42FC20098DB4A /* NetworkServices.swift */; };
 		44CB0DF322A198EF0048627B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CB0DF222A198EF0048627B /* AppDelegate.swift */; };
 		44CB0DF522A198EF0048627B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CB0DF422A198EF0048627B /* ViewController.swift */; };
 		44CB0DFA22A198F00048627B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44CB0DF922A198F00048627B /* Assets.xcassets */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		443340FB22B42FC20098DB4A /* NetworkServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServices.swift; sourceTree = "<group>"; };
 		44CB0DEF22A198EF0048627B /* WWScroll.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WWScroll.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44CB0DF222A198EF0048627B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		44CB0DF422A198EF0048627B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 			children = (
 				44CB0E1322A885AC0048627B /* ItemCellViewModel.swift */,
 				44CB101322A997DF0048627B /* ItemsViewModel.swift */,
+				443340FB22B42FC20098DB4A /* NetworkServices.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -326,6 +329,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				443340FC22B42FC20098DB4A /* NetworkServices.swift in Sources */,
 				44CB0E0C22A19C000048627B /* ItemController.swift in Sources */,
 				44CB0E0A22A19BE90048627B /* ItemCell.swift in Sources */,
 				44CB0DF522A198EF0048627B /* ViewController.swift in Sources */,

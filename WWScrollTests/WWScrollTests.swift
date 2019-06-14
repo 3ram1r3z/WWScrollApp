@@ -51,71 +51,76 @@ class WWScrollTests: XCTestCase {
         XCTAssertEqual(item.title, itemViewModel.title)
     }
     
-//    func testSectionOneHasBothTextAndImage() {
-//        //image and text should be present
-//        guard let tableView = sut?.tableView else { return }
-//        self.scrollApp.append(ItemCellViewModel(item: itemOne))
-//        self.scrollApp.append(ItemCellViewModel(item: itemTwo))
-//
-//        sut?.item.itemViewModels = scrollApp
-//        sut?.doneLoading()
-//        sut?.state = .populated
-//        sut?.tableView.reloadData()
-//
-//        guard let cell = sut?.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ItemCell else { return }
-//
-//        XCTAssertEqual(tableView.numberOfSections, 3)
-//        XCTAssertEqual(sut?.tableView.numberOfRows(inSection: 0), scrollApp.count)
-//        XCTAssertTrue(cell.foodTitle.text != nil)
-//        XCTAssertTrue(cell.foodImageView.sd_imageURL != nil)
-//
-//    }
-//
-//    func testSectionTwoNoImageButTextShouldExist() {
-//        //image should not be present
-//        //only text should show
-//        if let tableView = sut?.tableView {
-//            self.scrollApp.append(ItemCellViewModel(item: itemOne))
-//            self.scrollApp.append(ItemCellViewModel(item: itemTwo))
-//
-//            sut?.item.itemViewModels = scrollApp
-//            sut?.doneLoading()
-//            sut?.state = .populated
-//            sut?.tableView.reloadData()
-//
-//            guard let cell = sut?.tableView.cellForRow(at: IndexPath(row: 1, section: 1)) as? ItemCell else { return }
-//
-//
-//            XCTAssertEqual(tableView.numberOfSections, 3)
-//            XCTAssertEqual(tableView.numberOfRows(inSection: 1), scrollApp.count)
-//            XCTAssertTrue(cell.foodTitle.text != nil)
-//            XCTAssertTrue(cell.foodImageView.sd_imageURL == nil)
-//        }
-//    }
-//
-//    func testSectionThreeNoTextButImageShouldExist() {
-//        //text should not be present
-//        //only image should show
-//        guard let tableView = sut?.tableView else { XCTFail("Expected tableView to be instantiated"); return }
-//            self.scrollApp.append(ItemCellViewModel(item: itemOne))
-//            self.scrollApp.append(ItemCellViewModel(item: itemTwo))
-//
-//            sut?.item.itemViewModels = scrollApp
-//            sut?.doneLoading()
-//            sut?.state = .populated
-//            sut?.tableView.reloadData()
-//
-//            //guard let cell = sut?.tableView.cellForRow(at: IndexPath(row: 0, section: 3)) as? ItemCell else { XCTFail("Expected cell to be instantiated"); return }
-//        guard let cell = sut?.tableView.cellForRow(at: IndexPath(row: 1, section: 3)) as? ItemCell else { return }
-//
-//
-//            XCTAssertEqual(tableView.numberOfSections, 3)
-//            XCTAssertEqual(tableView.numberOfRows(inSection: 2), scrollApp.count)
-//
-//            XCTAssertTrue(cell.foodTitle.text != nil, "Expected food title to be nil")
-//            XCTAssertTrue(cell.foodImageView.sd_imageURL != nil)
-////            XCTAssertEqual(cell.foodImageView., <#T##expression2: Equatable##Equatable#>)
-//    }
+    func testSectionOneHasBothTextAndImage() {
+        //image and text should be present
+        guard let tableView = sut?.tableView else { return }
+        self.scrollApp.append(ItemCellViewModel(item: itemOne))
+        self.scrollApp.append(ItemCellViewModel(item: itemTwo))
+
+        sut?.item.itemViewModels = scrollApp
+        sut?.doneLoading()
+        sut?.state = .populated
+        sut?.tableView.reloadData()
+
+        guard let cell = sut?.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ItemCell else { return XCTFail() }
+
+        XCTAssertEqual(tableView.numberOfSections, 3)
+        XCTAssertEqual(sut?.tableView.numberOfRows(inSection: 0), scrollApp.count)
+        XCTAssertTrue(cell.foodTitle.text != nil)
+        XCTAssertTrue(cell.foodImageView.sd_imageURL != nil)
+
+    }
+
+    func testSectionTwoNoImageButTextShouldExist() {
+        //image should not be present
+        //only text should show
+        if let tableView = sut?.tableView {
+            self.scrollApp.append(ItemCellViewModel(item: itemOne))
+            self.scrollApp.append(ItemCellViewModel(item: itemTwo))
+
+            sut?.item.itemViewModels = scrollApp
+            sut?.doneLoading()
+            sut?.state = .populated
+            sut?.tableView.reloadData()
+
+            guard let cell = sut?.tableView.cellForRow(at: IndexPath(row: 1, section: 1)) as? ItemCell else { return XCTFail() }
+
+
+            XCTAssertEqual(tableView.numberOfSections, 3)
+            XCTAssertEqual(tableView.numberOfRows(inSection: 1), scrollApp.count)
+            XCTAssertTrue(cell.foodTitle.text != nil)
+            XCTAssertTrue(cell.foodImageView.sd_imageURL == nil)
+        }
+    }
+
+    func testSectionThreeNoTextButImageShouldExist() {
+        //text should not be present
+        //only image should show
+        guard let tableView = sut?.tableView else { XCTFail("Expected tableView to be instantiated"); return }
+            self.scrollApp.append(ItemCellViewModel(item: itemOne))
+            self.scrollApp.append(ItemCellViewModel(item: itemTwo))
+
+            sut?.item.itemViewModels = scrollApp
+            sut?.doneLoading()
+            sut?.state = .populated//
+            sut?.tableView.reloadData()
+
+        //
+        
+            //guard let cell = sut?.tableView.cellForRow(at: IndexPath(row: 0, section: 3)) as? ItemCell else { XCTFail("Expected cell to be instantiated"); return }
+        
+        //table view has not loaded cells
+        //following tests are not run and evaluated
+        guard let cell = sut?.tableView.cellForRow(at: IndexPath(row: 1, section: 3)) as? ItemCell else { return XCTFail()}
+
+
+            XCTAssertEqual(tableView.numberOfSections, 3)
+            XCTAssertEqual(tableView.numberOfRows(inSection: 2), scrollApp.count)
+
+            XCTAssertTrue(cell.foodTitle.text != nil, "Expected food title to be nil")
+            XCTAssertTrue(cell.foodImageView.sd_imageURL != nil)
+//            XCTAssertEqual(cell.foodImageView., <#T##expression2: Equatable##Equatable#>)
+    }
     
 //    func testMockURLFunctionality() {
 //        let session = MockURLSession()

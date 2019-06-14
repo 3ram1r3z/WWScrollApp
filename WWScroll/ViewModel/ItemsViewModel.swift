@@ -8,49 +8,42 @@
 
 import UIKit
 
-
+protocol React: class {
+    func changeStates(state: State)
+}
 
 class ItemsViewModel: NSObject {
     
-    weak var delegate: DataDelegate?
-
+//    weak var delegate: DataDelegate?
+    weak var delegate: React?
     var itemViewModels = [ItemCellViewModel]()
+    let network = NetworkServices()
     
     func loadData(session: URLSession=URLSession.shared) {
+        network.delegate = self
+//        let sharedSession = session
+        guard let url = URL(string: "https://www.weightwatchers.com/assets/cmx/us/messages/collections.json") else { return }
+        let request = URLRequest(url: url)
         
-        let sharedSession = session
-        if let url = URL(string: "https://www.weightwatchers.com/assets/cmx/us/messages/collections.json") {
-            let request = URLRequest(url: url)
-            let dataTask = sharedSession.dataTask(with: request, completionHandler: { (data, response, error) in
-                if error != nil {
-                    self.delegate?.noDataDisplay()  
-                    return
-                }
-                if let httpStatus = response as? HTTPURLResponse {
-                    if httpStatus.statusCode != 200 {
-                        return
-                    }
-                }
-                do {
-                    if let theData = data, let dataDictionary = try JSONSerialization.jsonObject(with: theData, options: .allowFragments) as? [NSDictionary] {
-                        for data in dataDictionary {
-                            if let imageName = data["image"] as? String, let title = data["title"] as? String {
-                                let item = Item(imageName: imageName, title: title)
-                                self.itemViewModels.append(ItemCellViewModel(item: item))
-                            }
-                        }
-                        self.delegate?.doneLoading()
-                    } else {
-                        return
-                    }
-                } catch {
-                    return 
-                }
-            })
-            dataTask.resume()
-        }
+        
+        itemViewModels = network.sendRequestGetResponse(session: session, request: request)
+        
         return
     }
 }
 
-
+extension ItemsViewModel: DataDelegate  {
+    
+    func doneLoading() {
+        DispatchQueue.main.async {
+//            state = .populated
+            self.delegate?.changeStates(state: .populated)
+        }
+    }
+    
+    func noDataDisplay() {
+        DispatchQueue.main.async {
+//            state = .nodata
+        }
+    }
+}

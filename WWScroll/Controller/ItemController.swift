@@ -20,6 +20,11 @@ class ItemController: UIViewController {
     var tableView = UITableView()
     var state: State = .loading
     var item = ItemsViewModel()
+//    var network = NetworkServices()
+    
+    override func loadView() {
+        view = tableView
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,9 +34,15 @@ class ItemController: UIViewController {
         
         tableView.dataSource = self
         tableView.delegate = self
-        item.delegate = self // must do this when using protocols to instantiate them
+
+//        item.delegate = self
+//        item.network.delegate = self
+//                item.network.delegate = item
+//         item.network = self
+//        network.delegate = self // must do this when using protocols to instantiate them
+        //change delegate of item to viewmodel
         state = .loading
-        item.loadData() 
+        item.loadData() // move call to the ItemsViewModel
         
     }
 }

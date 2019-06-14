@@ -13,17 +13,26 @@ protocol DataDelegate: class {
     func noDataDisplay()
 }
 
-extension ItemController: DataDelegate  {
-    func doneLoading() {
+//extension ItemController: DataDelegate  {
+//    func doneLoading() {
+//        DispatchQueue.main.async {
+//            self.state = .populated
+//            self.tableView.reloadData()
+//        }
+//    }
+//    
+//    func noDataDisplay() {
+//        DispatchQueue.main.async {
+//            self.state = .nodata
+//            self.tableView.reloadData()
+//        }
+//    }
+//}
+
+extension ItemController: React {
+    func changeStates(state: State) {
         DispatchQueue.main.async {
-            self.state = .populated
-            self.tableView.reloadData()
-        }
-    }
-    
-    func noDataDisplay() {
-        DispatchQueue.main.async {
-            self.state = .nodata
+            self.state = state
             self.tableView.reloadData()
         }
     }
