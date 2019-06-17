@@ -8,11 +8,11 @@
 
 import UIKit
 
-extension ItemController: UITableViewDataSource {
+extension FoodViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch state {
         case .populated:
-            return item.itemViewModels.count
+            return item.foodViewModels.count
         case .loading:
             return 10
         case .nodata:
@@ -23,7 +23,7 @@ extension ItemController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch state {
         case .populated:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as? ItemCell else { return ItemCell() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as? FoodCell else { return FoodCell() }
             return  structure(cell: cell, indexPath: indexPath)
         case .loading:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "skeleton", for: indexPath) as? Skeleton else { return Skeleton() }
@@ -47,18 +47,18 @@ extension ItemController: UITableViewDataSource {
         }
     }
     
-    //HELPER
+    // MARK: - HELPER
     
-    private func structure(cell: ItemCell, indexPath: IndexPath) -> ItemCell {
+    private func structure(cell: FoodCell, indexPath: IndexPath) -> FoodCell {
         cell.titleContainer.backgroundColor = nil
         cell.imageContainer.backgroundColor = nil
         cell.foodImageView.image = nil
         cell.foodTitle.text = nil
         if indexPath.section != 2 {//text only
-            cell.foodTitle.text = "\(item.itemViewModels[indexPath.row].title)"
+            cell.foodTitle.text = "\(item.foodViewModels[indexPath.row].title)"
         }
         if indexPath.section != 1 {//image only
-            let imageURL =  item.itemViewModels[indexPath.row].imageName
+            let imageURL =  item.foodViewModels[indexPath.row].imageName
             let domain = URL(string: "https://www.weightwatchers.com/\(imageURL)")
             cell.foodImageView.sd_setImage(with: domain)//, placeholderImage: UIImage(named: "bear_first"), options: [], completed: nil)
         }

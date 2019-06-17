@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Item: Decodable {
+struct ImageTitleStringModel: Decodable {
     let imageName: String
     let title: String
 }

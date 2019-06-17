@@ -10,40 +10,33 @@ import UIKit
 
 class NetworkServices {
     
-    weak var delegate: DataDelegate?
-    
-    func sendRequestGetResponse(session: URLSession, request: URLRequest) -> [ItemCellViewModel] {
-        var list = [ItemCellViewModel]()
-        let dataTask = session.dataTask(with: request, completionHandler: { (data, response, error) in
-            //different class, single responsibility
-            //array of itemcellviewmodels
-            if error != nil {
-                self.delegate?.noDataDisplay()
-                return
-            }
+    func sendRequestGetResponse(session: URLSession, request: URLRequest, completion: @escaping ([ImageTitleStringViewModel]?, String?) -> Void) {
+        var list = [ImageTitleStringViewModel]()
+        let dataTask = session.dataTask(with: request, completionHandler: { (resultingData, response, error) in
             guard let httpStatus = response as? HTTPURLResponse else { return }
-            if httpStatus.statusCode != 200 {
+            guard httpStatus.statusCode != 200 else {
+                completion(nil, "HTTP Error: \(httpStatus.statusCode)")
                 return
             }
-            
+            if error != nil {
+                completion(nil, "DataTask Error: \(error.debugDescription)")
+                return
+            }
+       
+
             do {
-                if let theData = data, let dataDictionary = try JSONSerialization.jsonObject(with: theData, options: .allowFragments) as? [NSDictionary] {
-                    for data in dataDictionary {
-                        if let imageName = data["image"] as? String, let title = data["title"] as? String {
-                            let item = Item(imageName: imageName, title: title)
-                            list.append(ItemCellViewModel(item: item))
-                        }
+                guard let theData = resultingData, let foodDictionary = try JSONSerialization.jsonObject(with: theData, options: .allowFragments) as? [NSDictionary]  else { return }
+                for foodInstance in foodDictionary {
+                    if let imageName = foodInstance["image"] as? String, let title = foodInstance["title"] as? String {
+                        let item = ImageTitleStringModel(imageName: imageName, title: title)
+                        list.append(ImageTitleStringViewModel(item: item))
                     }
-//                    completion()
-                    self.delegate?.doneLoading()
-                } else {
-                    return
                 }
+                completion(list, nil)
             } catch {
                 return
             }
         })
         dataTask.resume()
-        return list
     }
 }

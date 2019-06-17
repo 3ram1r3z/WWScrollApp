@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension ItemController: UITableViewDelegate {
+extension FoodViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70

@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         guard let window = window else { return false }
         window.backgroundColor = .white
-        window.rootViewController = ItemController()
+        window.rootViewController = FoodViewController()
         window.makeKeyAndVisible()
 
         return true
