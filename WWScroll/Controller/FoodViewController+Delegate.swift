@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension ItemController: UITableViewDelegate {
+extension RecipeListViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70
@@ -16,7 +16,7 @@ extension ItemController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch state {
-        case .nodata:
+        case .noData:
             return nil
         case .loading, .populated:
             return "Section \(section+1)"

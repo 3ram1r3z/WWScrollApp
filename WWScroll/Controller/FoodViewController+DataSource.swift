@@ -8,14 +8,14 @@
 
 import UIKit
 
-extension ItemController: UITableViewDataSource {
+extension RecipeListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch state {
         case .populated:
-            return item.itemViewModels.count
+            return recipeViewModel.recipes.count
         case .loading:
             return 10
-        case .nodata:
+        case .noData:
             return 1
         }
     }
@@ -23,15 +23,15 @@ extension ItemController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch state {
         case .populated:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as? ItemCell else { return ItemCell() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: RecipeCell.self), for: indexPath) as? RecipeCell else { return RecipeCell() }
             return  structure(cell: cell, indexPath: indexPath)
         case .loading:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "skeleton", for: indexPath) as? Skeleton else { return Skeleton() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: RecipeSkeletonCell.self), for: indexPath) as? RecipeSkeletonCell else { return RecipeSkeletonCell() }
             cell.titleContainer.backgroundColor = .lightGray
             cell.imageContainer.backgroundColor = .lightGray
             return cell
-        case .nodata:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "nodata", for: indexPath) as? NoData else { return NoData() }
+        case .noData:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: NoDataCell.self), for: indexPath) as? NoDataCell else { return NoDataCell() }
             return cell
         }
     }
@@ -42,23 +42,23 @@ extension ItemController: UITableViewDataSource {
             return 3
         case .loading:
             return 1
-        case .nodata:
+        case .noData:
             return 1
         }
     }
     
-    //HELPER
+    // MARK: - HELPER
     
-    private func structure(cell: ItemCell, indexPath: IndexPath) -> ItemCell {
+    private func structure(cell: RecipeCell, indexPath: IndexPath) -> RecipeCell {
         cell.titleContainer.backgroundColor = nil
         cell.imageContainer.backgroundColor = nil
         cell.foodImageView.image = nil
         cell.foodTitle.text = nil
         if indexPath.section != 2 {//text only
-            cell.foodTitle.text = "\(item.itemViewModels[indexPath.row].title)"
+            cell.foodTitle.text = "\(recipeViewModel.recipes[indexPath.row].title)"
         }
         if indexPath.section != 1 {//image only
-            let imageURL =  item.itemViewModels[indexPath.row].imageName
+            let imageURL =  recipeViewModel.recipes[indexPath.row].imageName
             let domain = URL(string: "https://www.weightwatchers.com/\(imageURL)")
             cell.foodImageView.sd_setImage(with: domain)//, placeholderImage: UIImage(named: "bear_first"), options: [], completed: nil)
         }

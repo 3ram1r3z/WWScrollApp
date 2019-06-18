@@ -8,11 +8,11 @@
 
 import Foundation
 
-struct ItemCellViewModel {
+struct RecipeModel {
     let title: String
     let imageName: String
     
-    init (item: Item) {
+    init (item: ImageTitleStringModel) {
         self.title = item.title
         self.imageName = item.imageName 
     }
