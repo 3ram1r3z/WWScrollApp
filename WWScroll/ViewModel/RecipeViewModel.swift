@@ -8,15 +8,15 @@
 
 import UIKit
 
-protocol FoodViewModelDelegate: class {
+protocol didUpdateTableView: class {
     func updateTableView(with state: State)
 }
 
-class FoodViewModel: NSObject {
+class RecipeViewModel: NSObject {
 
-    weak var delegate: FoodViewModelDelegate?
-    var foodViewModels = [ImageTitleStringViewModel]()
-    let network = NetworkServices()
+    weak var delegate: didUpdateTableView?
+    var recipes = [RecipeModel]()
+    let network = RecipeClient()
     
     override init() {
         super.init()
@@ -26,14 +26,14 @@ class FoodViewModel: NSObject {
     func loadData(session: URLSession=URLSession.shared) {
         guard let url = URL(string: "https://www.weightwatchers.com/assets/cmx/us/messages/collections.json") else { return }
         let request = URLRequest(url: url)
-        network.sendRequestGetResponse(session: session, request: request, completion: { (resultingList, error) in
+        network.getRecipes(session: session, request: request, completion: { (resultingList, error) in
             guard let list = resultingList, !list.isEmpty, error == nil else
             {
                 print(error ?? "Unhandled Error")
-                self.delegate?.updateTableView(with: .nodata)
+                self.delegate?.updateTableView(with: .noData)
                 return
             }
-            self.foodViewModels = list
+            self.recipes = list
             self.delegate?.updateTableView(with: .populated)
         })
     }

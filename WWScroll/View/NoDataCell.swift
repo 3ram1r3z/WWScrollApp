@@ -8,9 +8,9 @@
 
 import UIKit
 
-class NoData: UITableViewCell {
+class NoDataCell: UITableViewCell {
     
-    let textContainer: UIView = {
+    let foodTitlePlaceholderView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.clipsToBounds = true
@@ -37,19 +37,23 @@ class NoData: UITableViewCell {
     }
     
     func setConstraints() {
-        textContainer.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
-        textContainer.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor).isActive = true
-        textContainer.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor).isActive = true
-        textContainer.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            foodTitlePlaceholderView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
+            foodTitlePlaceholderView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor),
+            foodTitlePlaceholderView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
+            foodTitlePlaceholderView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor)
+            ])
         
-        noDataText.centerXAnchor.constraint(equalTo: textContainer.centerXAnchor).isActive = true
-        noDataText.centerYAnchor.constraint(equalTo: textContainer.centerYAnchor).isActive = true
-        noDataText.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        NSLayoutConstraint.activate([
+            noDataText.centerXAnchor.constraint(equalTo: foodTitlePlaceholderView.centerXAnchor),
+            noDataText.centerYAnchor.constraint(equalTo: foodTitlePlaceholderView.centerYAnchor),
+            noDataText.heightAnchor.constraint(equalToConstant: 20)
+            ])
     }
     
     func addSubviews() {
-        contentView.addSubview(textContainer)
-        textContainer.addSubview(noDataText)
+        contentView.addSubview(foodTitlePlaceholderView)
+        foodTitlePlaceholderView.addSubview(noDataText)
     }
 
 }

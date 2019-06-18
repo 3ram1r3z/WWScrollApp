@@ -8,13 +8,13 @@
 
 import UIKit
 
-class NetworkServices {
+class RecipeClient {
     
-    func sendRequestGetResponse(session: URLSession, request: URLRequest, completion: @escaping ([ImageTitleStringViewModel]?, String?) -> Void) {
-        var list = [ImageTitleStringViewModel]()
+    func getRecipes(session: URLSession, request: URLRequest, completion: @escaping ([RecipeModel]?, String?) -> Void) {
+        var list = [RecipeModel]()
         let dataTask = session.dataTask(with: request, completionHandler: { (resultingData, response, error) in
             guard let httpStatus = response as? HTTPURLResponse else { return }
-            guard httpStatus.statusCode != 200 else {
+            guard httpStatus.statusCode == 200 else {
                 completion(nil, "HTTP Error: \(httpStatus.statusCode)")
                 return
             }
@@ -29,7 +29,7 @@ class NetworkServices {
                 for foodInstance in foodDictionary {
                     if let imageName = foodInstance["image"] as? String, let title = foodInstance["title"] as? String {
                         let item = ImageTitleStringModel(imageName: imageName, title: title)
-                        list.append(ImageTitleStringViewModel(item: item))
+                        list.append(RecipeModel(item: item))
                     }
                 }
                 completion(list, nil)

@@ -12,14 +12,14 @@ import SDWebImage
 enum State {
     case loading
     case populated
-    case nodata
+    case noData
 }
 
-class FoodViewController: UIViewController {
+class RecipeListViewController: UIViewController {
     
     var tableView = UITableView()
     var state: State = .loading // initial state of app
-    var item = FoodViewModel() //
+    var recipeViewModel = RecipeViewModel() //
     
     override func loadView() {
         view = tableView
@@ -28,12 +28,12 @@ class FoodViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.register(FoodCell.self, forCellReuseIdentifier: "cellId")
-        tableView.register(NoData.self, forCellReuseIdentifier: "nodata")
-        tableView.register(Skeleton.self, forCellReuseIdentifier: "skeleton")
+        tableView.register(RecipeCell.self, forCellReuseIdentifier: String(describing: RecipeCell.self))
+        tableView.register(NoDataCell.self, forCellReuseIdentifier: String(describing: NoDataCell.self))
+        tableView.register(RecipeSkeletonCell.self, forCellReuseIdentifier: String(describing: RecipeSkeletonCell.self))
         
         tableView.dataSource = self
         tableView.delegate = self
-        item.delegate = self        
+        recipeViewModel.delegate = self        
     }
 }

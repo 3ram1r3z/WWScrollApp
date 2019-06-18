@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension FoodViewController: FoodViewModelDelegate {
+extension RecipeListViewController: didUpdateTableView {
     func updateTableView(with state: State) {
         DispatchQueue.main.async {
             self.state = state

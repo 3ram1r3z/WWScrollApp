@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ImageTitleStringViewModel {
+struct RecipeModel {
     let title: String
     let imageName: String
     
